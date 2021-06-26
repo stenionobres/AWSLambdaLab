@@ -39,7 +39,13 @@ namespace AWSLambdaLab.PricingCalc.Business
         {
             get
             {
-                return 0;
+                var computeSeconds = NumberOfRequests * TotalComputeInSeconds;
+                var computeGigabyteSeconds = computeSeconds * MemoryInMegabytes / 1024;
+                var computeGigabyteSecondsToBeCharged = computeGigabyteSeconds - FreeTierComputeChargesInGigabytePerSecond;
+
+                if (computeGigabyteSecondsToBeCharged <= 0) return 0;
+
+                return Math.Round(computeGigabyteSecondsToBeCharged * ComputePriceByGigabytePerSecond, 2);
             }
         }
 
