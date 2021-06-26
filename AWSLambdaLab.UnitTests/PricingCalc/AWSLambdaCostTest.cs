@@ -90,6 +90,15 @@ namespace AWSLambdaLab.UnitTests.PricingCalc
         }
 
         [Test]
+        public void ShouldReturnEighteenDollarsAndSeventyFourCentsOfMonthlyCost()
+        {
+            var computationParameters = CreateComputationParameters(allocatedMemory: 512, numberOfRequests: 3_000_000, computationInSeconds: 1);
+            var awsLambdaCost = new AWSLambdaCost(computationParameters);
+
+            Assert.AreEqual(18.74, awsLambdaCost.Calculate());
+        }
+
+        [Test]
         public void ShouldReturnEighteenDollarsAndThirtyFourCentsOfMonthlyComputeCharge()
         {
             var computationParameters = CreateComputationParameters(allocatedMemory: 512, numberOfRequests: 3_000_000, computationInSeconds: 1);
@@ -108,6 +117,15 @@ namespace AWSLambdaLab.UnitTests.PricingCalc
         }
 
         [Test]
+        public void ShouldReturnElevenDollarsAndSixtyThreeCentsOfMonthlyCost()
+        {
+            var computationParameters = CreateComputationParameters(allocatedMemory: 128, numberOfRequests: 30_000_000, computationInSeconds: 0.2m);
+            var awsLambdaCost = new AWSLambdaCost(computationParameters);
+
+            Assert.AreEqual(11.63, awsLambdaCost.Calculate());
+        }
+
+        [Test]
         public void ShouldReturnFiveDollarsAndEightyThreeCentsOfMonthlyComputeCharge()
         {
             var computationParameters = CreateComputationParameters(allocatedMemory: 128, numberOfRequests: 30_000_000, computationInSeconds: 0.2m);
@@ -123,6 +141,15 @@ namespace AWSLambdaLab.UnitTests.PricingCalc
             var awsLambdaCost = new AWSLambdaCost(computationParameters);
 
             Assert.AreEqual(5.8, awsLambdaCost.MonthlyRequestCharge);
+        }
+
+        [Test]
+        public void ShouldReturnOneHundredAndThirtyFiveDollarsAndEightCentsOfMonthlyCost()
+        {
+            var computationParameters = CreateComputationParameters(allocatedMemory: 256, numberOfRequests: 32_500_000, computationInSeconds: 1);
+            var awsLambdaCost = new AWSLambdaCost(computationParameters);
+
+            Assert.AreEqual(135.08, awsLambdaCost.Calculate());
         }
 
         [Test]

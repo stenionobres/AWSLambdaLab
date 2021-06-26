@@ -32,7 +32,7 @@ namespace AWSLambdaLab.PricingCalc.Business
 
         public decimal Calculate()
         {
-            return 0;
+            return MonthlyComputeCharge + MonthlyRequestCharge;
         }
 
         public decimal MonthlyComputeCharge
