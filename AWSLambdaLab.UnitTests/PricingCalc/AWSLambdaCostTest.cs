@@ -9,15 +9,6 @@ namespace AWSLambdaLab.UnitTests.PricingCalc
     public class AWSLambdaCostTest
     {
         [Test]
-        public void ShouldReturnOneInTheFirstTest()
-        {
-            var computationParameters = CreateComputationParameters(allocatedMemory: 128, numberOfRequests: 1000, computationInSeconds: 2);
-            var awsLambdaCost = new AWSLambdaCost(computationParameters);
-
-            Assert.AreEqual(1, awsLambdaCost.calculate());
-        }
-
-        [Test]
         public void ShouldReturnAnExceptionForAllocatedMemoryLessThanOrEqualToZero()
         {
             var computationParameters = CreateComputationParameters(allocatedMemory: 0, numberOfRequests: 1000, computationInSeconds: 2);
