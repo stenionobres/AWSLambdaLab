@@ -35,6 +35,14 @@ namespace AWSLambdaLab.PricingCalc.Business
             return 1;
         }
 
+        public decimal MonthlyComputeCharge
+        {
+            get
+            {
+                return 0;
+            }
+        }
+
         public decimal MonthlyRequestCharge
         {
             get
