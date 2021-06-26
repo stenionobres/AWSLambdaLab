@@ -15,9 +15,9 @@ namespace AWSLambdaLab.PricingCalc.Business
             TotalComputeInSeconds = computationParameters.TotalComputeByFunctionInSeconds;
         }
 
-        public void calculate()
+        public decimal calculate()
         {
-
+            return 1;
         }
     }
 }

@@ -10,4 +10,8 @@
     <PackageReference Include="NUnit3TestAdapter" Version="4.0.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\AWSLambdaLab.PricingCalc\AWSLambdaLab.PricingCalc.csproj" />
+  </ItemGroup>
+
 </Project>
