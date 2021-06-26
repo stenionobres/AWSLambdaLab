@@ -1,9 +1,8 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
+using System.Net;
+using Newtonsoft.Json;
 using Amazon.Lambda.Core;
+using Amazon.Lambda.APIGatewayEvents;
+using AWSLambdaLab.PricingCalc.Models;
 
 // Assembly attribute to enable the Lambda function's JSON input to be converted into a .NET class.
 [assembly: LambdaSerializer(typeof(Amazon.Lambda.Serialization.SystemTextJson.DefaultLambdaJsonSerializer))]
@@ -19,9 +18,15 @@ namespace AWSLambdaLab.PricingCalc
         /// <param name="input"></param>
         /// <param name="context"></param>
         /// <returns></returns>
-        public string FunctionHandler(string input, ILambdaContext context)
+        public APIGatewayProxyResponse FunctionHandler(APIGatewayProxyRequest request, ILambdaContext context)
         {
-            return input?.ToUpper();
+            var computationParameters = JsonConvert.DeserializeObject<ComputationParameters>(request.Body);
+
+            return new APIGatewayProxyResponse() 
+            {
+                StatusCode = (int)HttpStatusCode.OK,
+                Body = JsonConvert.SerializeObject(computationParameters)
+            };
         }
     }
 }
