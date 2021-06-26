@@ -18,7 +18,7 @@ namespace AWSLambdaLab.UnitTests.PricingCalc
         }
 
         [Test]
-        public void ShouldReturnAnExceptionForAllocatedMemoryLesserEqualToZero()
+        public void ShouldReturnAnExceptionForAllocatedMemoryLessThanOrEqualToZero()
         {
             var computationParameters = CreateComputationParameters(allocatedMemory: 0, numberOfRequests: 1000, computationInSeconds: 2);
             var exception = Assert.Throws<ApplicationException>(() => new AWSLambdaCost(computationParameters));
