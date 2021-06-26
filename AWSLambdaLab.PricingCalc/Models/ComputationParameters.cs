@@ -5,6 +5,6 @@ namespace AWSLambdaLab.PricingCalc.Models
     {
         public decimal AllocatedMemoryByFunctionInMegaBytes { get; set; }
         public int NumberOfRequests { get; set; }
-        public int TotalComputeByFunctionInSeconds { get; set; }
+        public decimal TotalComputeByFunctionInSeconds { get; set; }
     }
 }
