@@ -10,7 +10,7 @@ namespace AWSLambdaLab.PricingCalc.Business
         public decimal TotalComputeInSeconds { get; private set; }
         public int FreeTierComputeChargesInGigabytePerSecond => 400_000;
         public decimal ComputePriceByGigabytePerSecond => 0.00001667m;
-        public int FreeTierRequestsCharges => 1_000_000;
+        public int FreeTierRequestsChargesInMillions => 1_000_000;
         public decimal RequestsPricePerMillion => 0.2m;
 
 
@@ -34,5 +34,18 @@ namespace AWSLambdaLab.PricingCalc.Business
         {
             return 1;
         }
+
+        public decimal MonthlyRequestCharge
+        {
+            get
+            {
+                var requestsToBeCharged = NumberOfRequests - FreeTierRequestsChargesInMillions;
+
+                if (requestsToBeCharged <= 0) return 0;
+
+                return requestsToBeCharged / 1_000_000 * RequestsPricePerMillion;
+            }
+        }
+        
     }
 }

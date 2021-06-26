@@ -35,6 +35,15 @@ namespace AWSLambdaLab.UnitTests.PricingCalc
             Assert.That(exception.Message, Is.EqualTo("Computation in seconds parameter should be greater than zero."));
         }
 
+        [Test]
+        public void ShouldReturnFortyCentsOfMonthlyRequestCharge()
+        {
+            var computationParameters = CreateComputationParameters(allocatedMemory: 512, numberOfRequests: 3_000_000, computationInSeconds: 1);
+            var awsLambdaCost = new AWSLambdaCost(computationParameters);
+
+            Assert.AreEqual(0.4, awsLambdaCost.MonthlyRequestCharge);
+        }
+
         private ComputationParameters CreateComputationParameters(decimal allocatedMemory, int numberOfRequests, decimal computationInSeconds)
         {
             return new ComputationParameters()
