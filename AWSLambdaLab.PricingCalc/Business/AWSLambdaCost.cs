@@ -16,6 +16,9 @@ namespace AWSLambdaLab.PricingCalc.Business
 
         public AWSLambdaCost(ComputationParameters computationParameters)
         {
+            if (computationParameters == null)
+                throw new ArgumentNullException(nameof(computationParameters));
+
             if (computationParameters.AllocatedMemoryByFunctionInMegaBytes <= 0)
                 throw new ApplicationException("Allocated Memory parameter should be greater than zero.");
 
