@@ -10,7 +10,7 @@ using Amazon.Lambda.Core;
 
 namespace AWSLambdaLab.PricingCalc
 {
-    public class Function
+    public class CalculateCosts
     {
         
         /// <summary>
