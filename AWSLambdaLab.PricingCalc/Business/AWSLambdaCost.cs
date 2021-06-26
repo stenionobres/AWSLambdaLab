@@ -17,6 +17,9 @@ namespace AWSLambdaLab.PricingCalc.Business
             if (computationParameters.NumberOfRequests <= 0)
                 throw new ApplicationException("Number of requests parameter should be greater than zero.");
 
+            if (computationParameters.TotalComputeByFunctionInSeconds <= 0)
+                throw new ApplicationException("Computation in seconds parameter should be greater than zero.");
+
             MemoryInMegabytes = computationParameters.AllocatedMemoryByFunctionInMegaBytes;
             NumberOfRequests = computationParameters.NumberOfRequests;
             TotalComputeInSeconds = computationParameters.TotalComputeByFunctionInSeconds;

@@ -26,6 +26,15 @@ namespace AWSLambdaLab.UnitTests.PricingCalc
             Assert.That(exception.Message, Is.EqualTo("Number of requests parameter should be greater than zero."));
         }
 
+        [Test]
+        public void ShouldReturnAnExceptionForComputationInSecondsLessThanOrEqualToZero()
+        {
+            var computationParameters = CreateComputationParameters(allocatedMemory: 128, numberOfRequests: 1000, computationInSeconds: 0);
+            var exception = Assert.Throws<ApplicationException>(() => new AWSLambdaCost(computationParameters));
+
+            Assert.That(exception.Message, Is.EqualTo("Computation in seconds parameter should be greater than zero."));
+        }
+
         private ComputationParameters CreateComputationParameters(decimal allocatedMemory, int numberOfRequests, decimal computationInSeconds)
         {
             return new ComputationParameters()
