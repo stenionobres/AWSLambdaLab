@@ -43,7 +43,7 @@ namespace AWSLambdaLab.PricingCalc.Business
 
                 if (requestsToBeCharged <= 0) return 0;
 
-                return requestsToBeCharged / 1_000_000 * RequestsPricePerMillion;
+                return (decimal)requestsToBeCharged / 1_000_000 * RequestsPricePerMillion;
             }
         }
         
