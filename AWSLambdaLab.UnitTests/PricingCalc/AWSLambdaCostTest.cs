@@ -38,7 +38,7 @@ namespace AWSLambdaLab.UnitTests.PricingCalc
         [Test]
         public void ShouldReturnZeroMonthlyCostForComputationLessThanFreeTier()
         {
-            var computationParameters = CreateComputationParameters(allocatedMemory: 128, numberOfRequests: 3_000_000, computationInSeconds: 1);
+            var computationParameters = CreateComputationParameters(allocatedMemory: 128, numberOfRequests: 500_000, computationInSeconds: 1);
             var awsLambdaCost = new AWSLambdaCost(computationParameters);
 
             Assert.AreEqual(0, awsLambdaCost.Calculate());
@@ -65,7 +65,7 @@ namespace AWSLambdaLab.UnitTests.PricingCalc
         [Test]
         public void ShouldReturnZeroMonthlyCostForComputationEqualFreeTier()
         {
-            var computationParameters = CreateComputationParameters(allocatedMemory: 128, numberOfRequests: 3_200_000, computationInSeconds: 1);
+            var computationParameters = CreateComputationParameters(allocatedMemory: 512, numberOfRequests: 800_000, computationInSeconds: 1);
             var awsLambdaCost = new AWSLambdaCost(computationParameters);
 
             Assert.AreEqual(0, awsLambdaCost.Calculate());
