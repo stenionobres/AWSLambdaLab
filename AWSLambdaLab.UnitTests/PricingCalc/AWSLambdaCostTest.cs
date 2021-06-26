@@ -108,6 +108,15 @@ namespace AWSLambdaLab.UnitTests.PricingCalc
         }
 
         [Test]
+        public void ShouldReturnOneHundredTwentyEightDollarsAndSeventyEightCentsOfMonthlyComputeCharge()
+        {
+            var computationParameters = CreateComputationParameters(allocatedMemory: 256, numberOfRequests: 32_500_000, computationInSeconds: 1);
+            var awsLambdaCost = new AWSLambdaCost(computationParameters);
+
+            Assert.AreEqual(128.78, awsLambdaCost.MonthlyComputeCharge);
+        }
+
+        [Test]
         public void ShouldReturnSixDollarsAndThirtyCentsOfMonthlyRequestCharge()
         {
             var computationParameters = CreateComputationParameters(allocatedMemory: 256, numberOfRequests: 32_500_000, computationInSeconds: 1);
