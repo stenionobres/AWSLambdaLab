@@ -5,9 +5,9 @@ namespace AWSLambdaLab.PricingCalc.Business
 {
     public class AWSLambdaCost
     {
-        public decimal MemoryInMegabytes { get; set; }
-        public int NumberOfRequests { get; set; }
-        public decimal TotalComputeInSeconds { get; set; }
+        public decimal MemoryInMegabytes { get; private set; }
+        public int NumberOfRequests { get; private set; }
+        public decimal TotalComputeInSeconds { get; private set; }
 
         public AWSLambdaCost(ComputationParameters computationParameters)
         {
