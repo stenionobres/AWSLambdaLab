@@ -11,13 +11,6 @@ namespace AWSLambdaLab.PricingCalc
 {
     public class CalculateCosts
     {
-        
-        /// <summary>
-        /// A simple function that takes a string and does a ToUpper
-        /// </summary>
-        /// <param name="input"></param>
-        /// <param name="context"></param>
-        /// <returns></returns>
         public APIGatewayProxyResponse FunctionHandler(APIGatewayProxyRequest request, ILambdaContext context)
         {
             var computationParameters = JsonConvert.DeserializeObject<ComputationParameters>(request.Body);
