@@ -8,6 +8,9 @@ namespace AWSLambdaLab.PricingCalc.Business
         public decimal MemoryInMegabytes { get; private set; }
         public int NumberOfRequests { get; private set; }
         public decimal TotalComputeInSeconds { get; private set; }
+        public int FreeTierComputeChargesInGigabytePerSecond => 400_000;
+        public int FreeTierRequestsCharges => 1_000_000;
+
 
         public AWSLambdaCost(ComputationParameters computationParameters)
         {
