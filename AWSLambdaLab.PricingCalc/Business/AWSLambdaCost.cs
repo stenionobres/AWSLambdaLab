@@ -30,17 +30,15 @@ namespace AWSLambdaLab.PricingCalc.Business
             TotalComputeInSeconds = computationParameters.TotalComputeByFunctionInSeconds;
         }
 
-        public decimal Calculate()
-        {
-            return MonthlyComputeCharge + MonthlyRequestCharge;
-        }
+        public decimal Calculate() => MonthlyComputeCharge + MonthlyRequestCharge;
 
         public decimal MonthlyComputeCharge
         {
             get
             {
+                const int GB = 1024;
                 var computeSeconds = NumberOfRequests * TotalComputeInSeconds;
-                var computeGigabyteSeconds = computeSeconds * MemoryInMegabytes / 1024;
+                var computeGigabyteSeconds = computeSeconds * MemoryInMegabytes / GB;
                 var computeGigabyteSecondsToBeCharged = computeGigabyteSeconds - FreeTierComputeChargesInGigabytePerSecond;
 
                 if (computeGigabyteSecondsToBeCharged <= 0) return 0;
