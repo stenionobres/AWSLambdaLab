@@ -1,3 +1,4 @@
+using System;
 using System.Net;
 using Newtonsoft.Json;
 using Amazon.Lambda.Core;
@@ -13,7 +14,12 @@ namespace AWSLambdaLab.PricingCalc
     {
         public APIGatewayProxyResponse FunctionHandler(APIGatewayProxyRequest request, ILambdaContext context)
         {
-            var computationParameters = JsonConvert.DeserializeObject<ComputationParameters>(request.Body);
+            var computationParameters = new ComputationParameters()
+            {
+                AllocatedMemoryByFunctionInMegaBytes = Convert.ToDecimal(request.QueryStringParameters["AllocatedMemoryByFunctionInMegaBytes"]),
+                NumberOfRequests = Convert.ToInt32(request.QueryStringParameters["NumberOfRequests"]),
+                TotalComputeByFunctionInSeconds = Convert.ToDecimal(request.QueryStringParameters["TotalComputeByFunctionInSeconds"])
+            };
 
             return new APIGatewayProxyResponse() 
             {
