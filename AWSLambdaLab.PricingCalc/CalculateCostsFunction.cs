@@ -9,7 +9,7 @@ using AWSLambdaLab.PricingCalc.Models;
 
 namespace AWSLambdaLab.PricingCalc
 {
-    public class CalculateCosts
+    public class CalculateCostsFunction
     {
         public APIGatewayProxyResponse FunctionHandler(APIGatewayProxyRequest request, ILambdaContext context)
         {
